@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>Notebook - MDF- In_progress</title>
+<title>Notebook - MDF-Final</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11751,7 +11751,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1><center> Notebook - Competition - Meilleur Data Scientist de France <center/></h1>
+<h1><center> Notebook - Data Science Competition - Meilleur Data Scientist de France <center/></h1>
 
 </div>
 </div>
@@ -11762,6 +11762,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><em>This notebook is about my participation to the data science competition: <a href="https://www.datascience.net/fr/challenge/25/details">'Le Meilleur Data Scientist de France'</a>. This goal of this competition is to construct a predictive model to estimates the prices of medication boxes.</em></p>
+<p><strong>On this competition, I obtain a MAP score of 29,06%. On the leaderboard, I was on the top 15% (27/222).</strong></p>
 
 </div>
 </div>
@@ -11810,15 +11811,16 @@ div#notebook {
 <blockquote><p><a href="#GBR">4.1. Gradient Boosting</a></p>
 <p><a href="#RF">4.2. Random Forest</a></p>
 <p><a href="#ET">4.3. Extra Trees</a></p>
-<p><a href="#Adaboost">4.4. Adaboost</a></p>
+<p><a href="#Ada">4.4. Adaboost</a></p>
 <p><a href="#Ridge">4.5. Ridge Regression</a></p>
-<p><a href="#EN">4.6. Elastic Net</a></p>
+<p><a href="#ENet">4.6. Elastic Net</a></p>
 <p><a href="#Lasso">4.7. Lasso Regression</a></p>
-<p><a href="#SVM">4.8. Support Vectors Machine</a></p>
+<p><a href="#SVM">4.8. SVM</a></p>
 </blockquote>
 <p><a href="#Stacking">5. Stacking and Blending</a></p>
-<blockquote><p><a href="#Stacking_mean">5.1. Stacking by mean aggregation</a></p>
-<p><a href="#Stacking_LR">5.2. Stacking by Linear Regression</a></p>
+<blockquote><p><a href="#Stacking_1">5.1. Stacking by mean aggreagtion</a></p>
+<p><a href="#Stacking_2">5.2. Basic Stacking with Linear Regression</a></p>
+<p><a href="#Stacking_Gen">5.3. Stacking with stacked_generalizer</a></p>
 </blockquote>
 
 </div>
@@ -11846,7 +11848,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[298]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
@@ -11882,7 +11884,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Data/boites_medicaments_train.csv&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
@@ -11905,7 +11907,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -11919,7 +11921,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -12037,7 +12039,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -12051,7 +12053,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[78]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -12179,7 +12181,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">y_var</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)]</span>
@@ -12231,7 +12233,7 @@ The variable of interest is : &#39;prix&#39;.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
@@ -12245,7 +12247,7 @@ The variable of interest is : &#39;prix&#39;.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12271,7 +12273,7 @@ The variable of interest is : &#39;prix&#39;.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[80]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Interest variable</span>
@@ -12337,7 +12339,7 @@ The variable of interest is : &#39;prix&#39;.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;prix&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
@@ -12351,11 +12353,11 @@ The variable of interest is : &#39;prix&#39;.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[81]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xdd36f60&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xaaa1588&gt;</pre>
 </div>
 
 </div>
@@ -12563,7 +12565,7 @@ Q4ckSSrC0CFJkoowdEiSpCL+L79+05Ts2EZsAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;logprix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;prix&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
@@ -12578,11 +12580,11 @@ Q4ckSSrC0CFJkoowdEiSpCL+L79+05Ts2EZsAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[84]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x10922908&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xa9cf5c0&gt;</pre>
 </div>
 
 </div>
@@ -12751,7 +12753,7 @@ VOT/A/XXowIrU6A+AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[85]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;logprix&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;tx rembours&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">)</span>
@@ -12765,11 +12767,11 @@ VOT/A/XXowIrU6A+AAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[85]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x41acb38&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xaf27048&gt;</pre>
 </div>
 
 </div>
@@ -13246,7 +13248,7 @@ ERGRpCiYEBERkaT8f0xD2fCYyXKrAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;logprix&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;statut&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">)</span>
@@ -13260,11 +13262,11 @@ ERGRpCiYEBERkaT8f0xD2fCYyXKrAAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xc3ee470&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xbb462b0&gt;</pre>
 </div>
 
 </div>
@@ -13456,7 +13458,7 @@ JiRJUiWGCUmSVIlhQpIkVWKYkCRJlfx/aHj/aT0sUisAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[86]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">bins_declar</span> <span class="o">=</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;date declar annee&#39;</span><span class="p">])</span><span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;date declar annee&#39;</span><span class="p">]))</span><span class="o">/</span><span class="mi">2</span>
@@ -13475,11 +13477,11 @@ JiRJUiWGCUmSVIlhQpIkVWKYkCRJlfx/aHj/aT0sUisAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[86]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xdce2160&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0xbdc67f0&gt;</pre>
 </div>
 
 </div>
@@ -13741,19 +13743,6 @@ AABJRU5ErkJggg==
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[87]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;data_diff_declar_amm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;date declar annee&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;date amm annee&#39;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -13775,7 +13764,7 @@ AABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[88]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_set</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -13812,7 +13801,7 @@ AABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[89]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">nb_duplicated</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">train_set</span><span class="o">.</span><span class="n">duplicated</span><span class="p">())</span>
@@ -13840,7 +13829,7 @@ AABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">nb_duplicated</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">test_set</span><span class="o">.</span><span class="n">duplicated</span><span class="p">())</span>
@@ -13878,7 +13867,7 @@ AABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[91]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_set</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -13925,7 +13914,7 @@ AABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[92]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">nb_duplicated</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="n">feat_all</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">())</span>
@@ -13963,7 +13952,7 @@ AABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[93]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_set</span><span class="p">[</span><span class="n">train_set</span><span class="p">[</span><span class="n">feat_all</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">==</span><span class="bp">True</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;libelle&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
@@ -13977,7 +13966,7 @@ AABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[93]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -13996,6 +13985,7 @@ AABJRU5ErkJggg==
       <th>libelle_sachet</th>
       <th>libelle_comprime</th>
       <th>...</th>
+      <th>forme pharma</th>
       <th>voies admin</th>
       <th>statut admin</th>
       <th>date declar annee</th>
@@ -14005,7 +13995,6 @@ AABJRU5ErkJggg==
       <th>substances</th>
       <th>prix</th>
       <th>logprix</th>
-      <th>data_diff_declar_amm</th>
     </tr>
   </thead>
   <tbody>
@@ -14022,6 +14011,7 @@ AABJRU5ErkJggg==
       <td>0</td>
       <td>0</td>
       <td>...</td>
+      <td>poudre et  solvant pour solution injectable</td>
       <td>sous-cutanée</td>
       <td>Autorisation active</td>
       <td>2002</td>
@@ -14031,7 +14021,6 @@ AABJRU5ErkJggg==
       <td>PEGINTERFÉRON ALFA-2B</td>
       <td>93.44</td>
       <td>4.537320</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>3692</th>
@@ -14046,6 +14035,7 @@ AABJRU5ErkJggg==
       <td>0</td>
       <td>0</td>
       <td>...</td>
+      <td>poudre et  solvant pour solution injectable</td>
       <td>sous-cutanée</td>
       <td>Autorisation active</td>
       <td>2002</td>
@@ -14055,7 +14045,6 @@ AABJRU5ErkJggg==
       <td>PEGINTERFÉRON ALFA-2B</td>
       <td>271.34</td>
       <td>5.603373</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>4347</th>
@@ -14070,6 +14059,7 @@ AABJRU5ErkJggg==
       <td>0</td>
       <td>0</td>
       <td>...</td>
+      <td>poudre et  solvant pour solution injectable</td>
       <td>sous-cutanée</td>
       <td>Autorisation active</td>
       <td>2002</td>
@@ -14079,7 +14069,6 @@ AABJRU5ErkJggg==
       <td>PEGINTERFÉRON ALFA-2B</td>
       <td>183.33</td>
       <td>5.211288</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>5632</th>
@@ -14094,6 +14083,7 @@ AABJRU5ErkJggg==
       <td>0</td>
       <td>0</td>
       <td>...</td>
+      <td>poudre et  solvant pour solution injectable</td>
       <td>sous-cutanée</td>
       <td>Autorisation active</td>
       <td>2002</td>
@@ -14103,11 +14093,10 @@ AABJRU5ErkJggg==
       <td>PEGINTERFÉRON ALFA-2B</td>
       <td>147.42</td>
       <td>4.993286</td>
-      <td>0</td>
     </tr>
   </tbody>
 </table>
-<p>4 rows × 43 columns</p>
+<p>4 rows × 42 columns</p>
 </div>
 </div>
 
@@ -14129,7 +14118,7 @@ AABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[94]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">nb_rows_before</span> <span class="o">=</span> <span class="n">train_set</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -14195,7 +14184,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[95]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">check_na</span> <span class="o">=</span> <span class="n">train_set</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">isnull</span><span class="p">()),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -14210,7 +14199,7 @@ In the dataset now we have 7497 duplicated rows.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[95]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14225,7 +14214,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[96]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">check_na</span> <span class="o">=</span> <span class="n">test_set</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">isnull</span><span class="p">()),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -14240,7 +14229,7 @@ In the dataset now we have 7497 duplicated rows.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[96]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14334,12 +14323,12 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[161]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
 
-<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -14361,14 +14350,14 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The goal is to define a single model that help to verify our choice in terms of feature engineering and modeling. So, we can use random forest for classification or regression relative to the problem that we want to solve.</p>
+<p>The goal is to define a single model that help to verify our choices in terms of feature engineering and modeling. So, we can use random forest for classification or regression relative to the problem that we want to solve.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[162]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Classification problem</span>
@@ -14408,7 +14397,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Mean Absolute Percentage Error</span>
@@ -14432,7 +14421,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[97]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
@@ -14445,7 +14434,7 @@ In the dataset now we have 7497 duplicated rows.
     <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">KFold</span><span class="p">(</span><span class="n">train_X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_folds</span><span class="o">=</span><span class="n">K_Fold</span><span class="p">):</span>
         <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">train_X</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span> <span class="p">:],</span> <span class="n">train_X</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span> <span class="p">:]</span>
         <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_Y</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">train_Y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>  
-        <span class="n">reg</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
         <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
         <span class="n">pred</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
         <span class="n">err</span> <span class="o">+=</span> <span class="n">mape_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">y_test</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span>
@@ -14488,7 +14477,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[98]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="p">]</span>
@@ -14534,7 +14523,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[99]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;prix&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
@@ -14600,7 +14589,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[100]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="p">]</span>
@@ -14634,7 +14623,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[211]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_dates</span><span class="p">]</span>
@@ -14671,6 +14660,82 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>If we transform the date features.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">feat_dates</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;date declar annee&#39;, &#39;date amm annee&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;date declar annee_b&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;date declar annee&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;date declar annee&#39;</span><span class="p">]</span>
+<span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;date amm annee_b&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;date amm annee&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;date amm annee&#39;</span><span class="p">]</span> 
+<span class="n">feat_dates_b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;date declar annee_b&#39;</span><span class="p">,</span><span class="s1">&#39;date amm annee_b&#39;</span><span class="p">]</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_dates_b</span><span class="p">]</span>
+<span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
+<span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>89.9687246833
+93.3498602784
+106.975008115
+84.2973240362
+96.4150342082
+*** MAPE Error :  94.2
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Adding Date seems not to be a good things to have a better result.</p>
 
 </div>
@@ -14678,10 +14743,11 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[212]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;data_diff_declar_amm&#39;</span><span class="p">]]</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;data_diff_declar_amm&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;date amm annee_b&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;date declar annee_b&#39;</span><span class="p">]</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;data_diff_declar_amm&#39;</span><span class="p">]]</span>
 <span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
 <span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
 </pre></div>
@@ -14715,6 +14781,16 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><strong> So adding date variable do not bring more relevant information.</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="3.3.-Categorical-Features-">3.3. Categorical Features <a name="CatFeat" /><a class="anchor-link" href="#3.3.-Categorical-Features-">&#182;</a></h4>
 </div>
 </div>
@@ -14733,14 +14809,14 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We test to find the best combination of the categorical features</p>
+<p>We test to find the best combination of the categorical features.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[103]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">feat_cat</span> 
@@ -14754,7 +14830,7 @@ In the dataset now we have 7497 duplicated rows.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[103]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14775,7 +14851,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[104]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat</span><span class="p">]</span>
@@ -14810,7 +14886,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[105]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;type proc&#39;</span><span class="p">,</span><span class="s1">&#39;voies admin&#39;</span><span class="p">,</span><span class="s1">&#39;tx rembours&#39;</span><span class="p">,</span><span class="s1">&#39;statut admin&#39;</span><span class="p">]]</span>
@@ -14845,7 +14921,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[106]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">feat_cat_b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;type proc&#39;</span><span class="p">,</span><span class="s1">&#39;voies admin&#39;</span><span class="p">,</span><span class="s1">&#39;tx rembours&#39;</span><span class="p">,</span><span class="s1">&#39;statut admin&#39;</span><span class="p">]</span>
@@ -14855,6 +14931,16 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong> After some tests in terms of prediction, feat_cat_b is the vector that contains the best combination of the categorical features</strong></p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -14877,7 +14963,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[253]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;tx rembours_num&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">train_set</span><span class="p">[</span><span class="s2">&quot;tx rembours&quot;</span><span class="p">]]</span>
@@ -14890,253 +14976,10 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[261]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="p">]</span>
-<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
-<span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>66.6120756132
-67.1865847579
-67.0868711335
-59.7789847386
-64.4290445183
-*** MAPE Error :  65.02
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[262]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;type proc&#39;</span><span class="p">,</span><span class="s1">&#39;voies admin&#39;</span><span class="p">,</span><span class="s1">&#39;tx rembours_num&#39;</span><span class="p">,</span><span class="s1">&#39;statut admin&#39;</span><span class="p">]]</span>
-<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
-<span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>67.4588329609
-66.626781092
-69.7867585379
-59.1931024022
-63.593208358
-*** MAPE Error :  65.33
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This is unclear that increase the performance. So we keep 'tx rembours' as a categorical variable.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="3.4.-Text-variables--">3.4. Text variables  <a name="Text" /><a class="anchor-link" href="#3.4.-Text-variables--">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[264]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">feat_text</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[264]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&#39;libelle&#39;, &#39;titulaires&#39;, &#39;substances&#39;, &#39;forme pharma&#39;]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="3.4.1.-substances">3.4.1. substances<a class="anchor-link" href="#3.4.1.-substances">&#182;</a></h5>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[268]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">distinctCategs</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;substances&#39;</span><span class="p">]</span>
-                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col_value</span> <span class="p">:</span> <span class="n">col_value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
-                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
-                  <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
-                  <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-                  <span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-
-<span class="n">feat_substances</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">:</span>
-    <span class="n">train_set</span><span class="p">[</span><span class="n">distinctCateg</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;substances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[281]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="n">feat_substances</span><span class="p">]</span>
-<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
-<span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>31.8171983922
-35.903917255
-33.4028206651
-34.4617271561
-33.0756607798
-*** MAPE Error :  33.73
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong> We can remark this increase a lot our model ! </strong></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="3.4.2.-forme-pharma">3.4.2. forme pharma<a class="anchor-link" href="#3.4.2.-forme-pharma">&#182;</a></h5>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If we decide to encode forme pharma as a categorical variable.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[101]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[101]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>190</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[107]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]]</span>
 <span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
 <span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
@@ -15168,7 +15011,365 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[108]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;type proc&#39;</span><span class="p">,</span><span class="s1">&#39;voies admin&#39;</span><span class="p">,</span><span class="s1">&#39;tx rembours_num&#39;</span><span class="p">,</span><span class="s1">&#39;statut admin&#39;</span><span class="p">,</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]]</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
+<span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>60.5169391915
+59.2215515452
+59.7778051454
+57.8840465037
+57.3982320106
+*** MAPE Error :  58.96
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>This is unclear that increase the performance. So we keep 'tx rembours' as a categorical variable. </strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="3.4.-Text-variables--">3.4. Text variables  <a name="Text" /><a class="anchor-link" href="#3.4.-Text-variables--">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">feat_text</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[79]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;libelle&#39;, &#39;titulaires&#39;, &#39;substances&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="3.4.1.-substances">3.4.1. substances<a class="anchor-link" href="#3.4.1.-substances">&#182;</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To use substances as a feature, we transform this variable.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">distinctCategs</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;substances&#39;</span><span class="p">]</span>
+                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col_value</span> <span class="p">:</span> <span class="n">col_value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">))</span>
+                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
+                  <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+                  <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+                  <span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+<span class="n">feat_substances</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">]</span>
+<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">feat_substances</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">:</span>
+    <span class="n">train_set</span><span class="p">[</span><span class="n">distinctCateg</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;substances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1675
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="n">feat_substances</span><span class="p">]</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
+<span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>31.6721450763
+35.5842147923
+33.2980363164
+33.8590340957
+34.1893886963
+*** MAPE Error :  33.72
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Other way to treat the feature 'substances', as we can see substances have some words between parentheses, we choose to remove this.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">substance_n</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;substances&#39;</span><span class="p">]]</span>
+<span class="n">substance_n</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">substance_n</span><span class="p">)</span>
+<span class="n">list_sc</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;(&#39;</span><span class="p">,</span><span class="s1">&#39;)&#39;</span><span class="p">,</span><span class="s1">&#39;))&#39;</span><span class="p">,</span><span class="s1">&#39;((&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">carac</span> <span class="ow">in</span> <span class="n">list_sc</span><span class="p">:</span>
+    <span class="n">substance_n</span> <span class="o">=</span> <span class="n">substance_n</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">carac</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+<span class="n">substance_n</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">substance_n</span><span class="p">]</span>
+<span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;substances_n&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">substance_n</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">distinctCategs</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;substances_n&#39;</span><span class="p">]</span>
+                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col_value</span> <span class="p">:</span> <span class="n">col_value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
+                  <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+                  <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+                  <span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+<span class="n">feat_substances_n</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">:</span>
+    <span class="n">train_set</span><span class="p">[</span><span class="n">distinctCateg</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;substances_n&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="n">feat_substances_n</span><span class="p">]</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
+<span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>31.7824245891
+35.3521218735
+32.3884276792
+34.2250022868
+35.376652803
+*** MAPE Error :  33.82
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong> We can remark when you incorporate substances as a feature this increase a lot the performance of the model ! We keep the first transformation because the MAP performance is better.</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="3.4.2.-forme-pharma">3.4.2. forme pharma<a class="anchor-link" href="#3.4.2.-forme-pharma">&#182;</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can encode forme pharma with different forms:</p>
+<ul>
+<li>As a categorical variable directly</li>
+<li>Using transformation to separate the text (this method add all of information)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[51]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>190</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="n">feat_substances</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]]</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
+<span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>31.5749034448
+34.8310684086
+34.1575340872
+33.6017086211
+33.037336659
+*** MAPE Error :  33.44
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">distinctCategs</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]</span>
@@ -15183,7 +15384,7 @@ In the dataset now we have 7497 duplicated rows.
 <span class="k">for</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">:</span>
     <span class="n">train_set</span><span class="p">[</span><span class="n">distinctCateg</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
     
-<span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="n">feat_forme_pharma</span><span class="p">]</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="n">feat_substances</span><span class="o">+</span><span class="n">feat_forme_pharma</span><span class="p">]</span>
 <span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
 <span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
@@ -15199,12 +15400,12 @@ In the dataset now we have 7497 duplicated rows.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>61.0182352939
-59.6016766852
-61.0368623808
-57.041926051
-57.4531995356
-*** MAPE Error :  59.23
+<pre>30.877171184
+33.8349743768
+34.7604285401
+34.4769202092
+33.2787404544
+*** MAPE Error :  33.45
 </pre>
 </div>
 </div>
@@ -15218,52 +15419,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The model was improved relative to previously.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[286]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">feat_substances</span><span class="p">]</span>
-<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
-<span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>31.1813387333
-35.907743537
-33.6526651025
-35.2679426569
-32.7944309686
-*** MAPE Error :  33.76
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The model has a lot of variable so this basic model do not try to take into account all the variable.</p>
+<p><strong>The model is improved relative to previously. The difference between the two way to proceed is unclear, we choose to transform forme pharma as a categorical variable.</strong></p>
 
 </div>
 </div>
@@ -15279,7 +15435,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[292]:</div>
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;titulaires&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
@@ -15293,7 +15449,7 @@ In the dataset now we have 7497 duplicated rows.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[292]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[74]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15308,10 +15464,33 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[291]:</div>
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;titulaires&#39;</span><span class="p">]]</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">distinctCategs</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;titulaires&#39;</span><span class="p">]</span>
+                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col_value</span> <span class="p">:</span> <span class="n">col_value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
+                  <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+                  <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+                  <span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+<span class="n">feat_titulaires</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">feat_titulaires</span><span class="p">:</span>
+    <span class="n">train_set</span><span class="p">[</span><span class="n">distinctCateg</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;titulaires&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="n">feat_substances</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">feat_titulaires</span><span class="p">]</span>
 <span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
 <span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
@@ -15327,12 +15506,12 @@ In the dataset now we have 7497 duplicated rows.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>68.754371165
-64.7299697805
-68.3117945775
-61.3599079843
-66.7326804424
-*** MAPE Error :  65.98
+<pre>36.1340015139
+36.018909698
+36.1862746263
+35.1858842987
+35.7055500087
+*** MAPE Error :  35.85
 </pre>
 </div>
 </div>
@@ -15346,7 +15525,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This not improve the model</p>
+<p><strong>This feature does not improve the model.</strong></p>
 
 </div>
 </div>
@@ -15362,7 +15541,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[293]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;libelle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
@@ -15376,7 +15555,7 @@ In the dataset now we have 7497 duplicated rows.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[293]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15391,7 +15570,7 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[295]:</div>
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">distinctCategs</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;libelle&#39;</span><span class="p">]</span>
@@ -15404,7 +15583,7 @@ In the dataset now we have 7497 duplicated rows.
 <span class="n">feat_libelle</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">:</span>
-    <span class="n">train_set</span><span class="p">[</span><span class="n">distinctCateg</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;substances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">train_set</span><span class="p">[</span><span class="n">distinctCateg</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;libelle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -15414,11 +15593,11 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[296]:</div>
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="n">feat_libelle</span><span class="p">]</span>
-<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="n">feat_substances</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">feat_libelle</span><span class="p">]</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">)</span>
 <span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
 <span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
 </pre></div>
@@ -15433,47 +15612,12 @@ In the dataset now we have 7497 duplicated rows.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>44.8815716218
-49.8285964204
-47.2264314897
-46.9284904888
-49.7524481202
-*** MAPE Error :  47.72
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[297]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="n">feat_libelle</span><span class="o">+</span><span class="n">feat_substances</span><span class="p">]</span>
-<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
-<span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>32.1839186781
-35.1845397455
-32.4411798037
-35.6550360408
-32.9489553369
-*** MAPE Error :  33.68
+<pre>35.196984893
+38.0346123197
+37.2942303971
+37.5560242556
+33.6943586726
+*** MAPE Error :  36.36
 </pre>
 </div>
 </div>
@@ -15487,7 +15631,151 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To resume the variable that seems be important are libelle, substances and forme pharma.</p>
+<p>Are there substances information in the variable libelle ?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">feat_libelle</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">feat_substances_n</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[81]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[u&#39;3&#39;,
+ u&#39;1&#39;,
+ u&#39;2&#39;,
+ u&#39;5&#39;,
+ u&#39;6&#39;,
+ u&#39;16&#39;,
+ u&#39;-&#39;,
+ u&#39;&#39;,
+ u&#39;:&#39;,
+ u&#39;18&#39;,
+ u&#39;LA&#39;,
+ u&#39;A&#39;,
+ u&#39;B&#39;,
+ u&#39;11&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Clearly these variable are non-relevant.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="3.5-Other-Features-Engineering">3.5 Other Features Engineering<a class="anchor-link" href="#3.5-Other-Features-Engineering">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Multiplying number of ml by the number of the recipents.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[87]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">nb</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;nb_plaquette&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_ampoule&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_flacon&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_tube&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_stylo&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_seringue&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_pilulier&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_sachet&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_comprime&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_gelule&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_film&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_poche&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;nb_capsule&#39;</span><span class="p">]</span>
+
+<span class="n">multi</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">nb</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;ml_all_product&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">multi</span><span class="o">*</span><span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;nb_ml&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[89]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="n">feat_num</span><span class="o">+</span><span class="n">feat_cat_b</span><span class="o">+</span><span class="n">feat_substances</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;ml_all_product&#39;</span><span class="p">]]</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_X</span><span class="p">)</span>
+<span class="n">train_Y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
+<span class="n">SingleModelTest</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>31.6339363692
+35.4195339387
+33.6857304527
+33.1943690465
+33.4298816467
+*** MAPE Error :  33.47
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember the best performance was 33.45. So, this is not improve the model.</p>
 
 </div>
 </div>
@@ -15501,9 +15789,19 @@ In the dataset now we have 7497 duplicated rows.
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we implement the transformation that we test before. To have the best set of features to optimize. We choose to re-implement all of the relevant code that we use before to execute just one function.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[109]:</div>
+<div class="prompt input_prompt">In&nbsp;[90]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">## Libraries</span>
@@ -15512,7 +15810,7 @@ In the dataset now we have 7497 duplicated rows.
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-
+<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">VarianceThreshold</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline 
 
 
@@ -15550,6 +15848,9 @@ In the dataset now we have 7497 duplicated rows.
 <span class="c1"># All features vector</span>
 <span class="n">feat_all</span> <span class="o">=</span> <span class="n">feat_num</span> <span class="o">+</span> <span class="n">feat_dates</span> <span class="o">+</span> <span class="n">feat_cat</span> <span class="o">+</span> <span class="n">feat_text</span>
 
+<span class="c1"># Mean Absolute Percentage Error</span>
+<span class="k">def</span> <span class="nf">mape_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_true</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
 
 <span class="c1">### Duplicates</span>
 <span class="n">train</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -15563,21 +15864,21 @@ In the dataset now we have 7497 duplicated rows.
 <span class="n">train</span> <span class="o">=</span> <span class="n">train_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">agg_duplicated</span><span class="p">)</span>
 <span class="n">train</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-
 <span class="n">train</span><span class="p">[</span><span class="s1">&#39;SOURCE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;TRAIN&#39;</span>
 <span class="n">test</span><span class="p">[</span><span class="s1">&#39;SOURCE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;TEST&#39;</span>
 <span class="n">BIG</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
+<span class="n">BIG</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="c1">#BIG = train.copy()</span>
 <span class="k">print</span> <span class="s2">&quot;TRAIN&quot;</span><span class="p">,</span> <span class="n">train</span><span class="o">.</span><span class="n">shape</span>
 <span class="k">print</span> <span class="s2">&quot;TEST &quot;</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span>
 <span class="k">print</span> <span class="s2">&quot;BIG &quot;</span><span class="p">,</span> <span class="n">BIG</span><span class="o">.</span><span class="n">shape</span>
 
+<span class="n">featToDel</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;titulaires&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;libelle&#39;</span><span class="p">,</span><span class="s1">&#39;statut&#39;</span><span class="p">,</span> <span class="s1">&#39;etat commerc&#39;</span><span class="p">,</span><span class="s1">&#39;agrement col&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;date declar annee&#39;</span><span class="p">,</span> <span class="s1">&#39;date amm annee&#39;</span><span class="p">]</span>
 
-<span class="n">featToDel</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;statut&#39;</span><span class="p">,</span><span class="s1">&#39;etat commerc&#39;</span><span class="p">,</span><span class="s1">&#39;agrement col&#39;</span><span class="p">,</span><span class="s1">&#39;titulaires&#39;</span><span class="p">,</span><span class="s1">&#39;date declar annee&#39;</span><span class="p">,</span> <span class="s1">&#39;date amm annee&#39;</span><span class="p">]</span>
+<span class="n">featToDummy</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tx rembours&#39;</span><span class="p">,</span><span class="s1">&#39;voies admin&#39;</span><span class="p">,</span> <span class="s1">&#39;statut admin&#39;</span><span class="p">,</span> <span class="s1">&#39;type proc&#39;</span><span class="p">,</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]</span>
 
-<span class="n">featToDummy</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tx rembours&#39;</span><span class="p">,</span><span class="s1">&#39;statut admin&#39;</span><span class="p">,</span><span class="s1">&#39;type proc&#39;</span><span class="p">,</span><span class="s1">&#39;voies admin&#39;</span><span class="p">]</span>
-
-<span class="n">featToTransform</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;substances&#39;</span><span class="p">,</span> <span class="s1">&#39;forme pharma&#39;</span><span class="p">,</span> <span class="s1">&#39;libelle&#39;</span><span class="p">,</span> <span class="s1">&#39;prix&#39;</span><span class="p">]</span>
+<span class="n">featToTransform</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;prix&#39;</span><span class="p">,</span><span class="s1">&#39;substances&#39;</span><span class="p">]</span>
 
 <span class="n">featToEncode</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -15607,61 +15908,100 @@ In the dataset now we have 7497 duplicated rows.
      
     <span class="k">print</span> <span class="s2">&quot;---Feature to Transform &quot;</span>    
     <span class="k">if</span> <span class="s2">&quot;substances&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;featToTransform&quot;</span><span class="p">]:</span>
-        <span class="n">distinctCategs</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;substances&#39;</span><span class="p">]</span>
+        <span class="n">distinctCategs</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;SOURCE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;TRAIN&#39;</span><span class="p">][</span><span class="s1">&#39;substances&#39;</span><span class="p">]</span>
                   <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col_value</span> <span class="p">:</span> <span class="n">col_value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
                   <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
                   <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
                   <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
                   <span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-
+        
         <span class="k">for</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">:</span>
             <span class="n">X</span><span class="p">[</span><span class="n">distinctCateg</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;substances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
         
         <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;substances&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     
     
-    <span class="k">if</span> <span class="s2">&quot;libelle&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;featToTransform&quot;</span><span class="p">]:</span>
-        <span class="n">distinctCategs</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;libelle&#39;</span><span class="p">]</span>
-                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col_value</span> <span class="p">:</span> <span class="n">col_value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
-                  <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
-                  <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-                  <span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="sd">&quot;&quot;&quot;if &quot;libelle&quot; in config[&quot;featToTransform&quot;]:</span>
+<span class="sd">        distinctCategs_b = (X[X[&#39;SOURCE&#39;] == &#39;TRAIN&#39;][&#39;libelle&#39;]</span>
+<span class="sd">                  .apply(lambda col_value : col_value.split(&#39; &#39;))</span>
+<span class="sd">                  .apply(pd.Series)</span>
+<span class="sd">                  .unstack()</span>
+<span class="sd">                  .dropna()</span>
+<span class="sd">                  .unique())</span>
+<span class="sd">        </span>
+<span class="sd">        feat_libelle = [value for value in distinctCategs_b]</span>
 
-        <span class="k">for</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">:</span>
-            <span class="n">X</span><span class="p">[</span><span class="n">distinctCateg</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;libelle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-        
-        <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;libelle&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        
-    <span class="k">if</span> <span class="s2">&quot;forme pharma&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;featToTransform&quot;</span><span class="p">]:</span>
-        <span class="n">distinctCategs</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]</span>
-                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col_value</span> <span class="p">:</span> <span class="n">col_value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-                  <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
-                  <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
-                  <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-                  <span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="sd">        for distinctCateg in feat_libelle:</span>
+<span class="sd">            X[distinctCateg] = X[&#39;libelle&#39;].apply(lambda x : 1 if distinctCateg in x else 0)  </span>
+<span class="sd">        </span>
+<span class="sd">        X.drop(&quot;libelle&quot;, axis =1, inplace=True)</span>
+<span class="sd">        </span>
+<span class="sd">    if &quot;titulaires&quot; in config[&quot;featToTransform&quot;]:</span>
+<span class="sd">        distinctCategs = (X[&#39;titulaires&#39;]</span>
+<span class="sd">                  .apply(lambda col_value : col_value.split(&#39; &#39;))</span>
+<span class="sd">                  .apply(pd.Series)</span>
+<span class="sd">                  .unstack()</span>
+<span class="sd">                  .dropna()</span>
+<span class="sd">                  .unique())</span>
 
-        <span class="k">for</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">distinctCategs</span><span class="p">:</span>
-            <span class="n">X</span><span class="p">[</span><span class="n">distinctCateg</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;forme pharma&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">distinctCateg</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-        
-        <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;forme pharma&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>       
+<span class="sd">        for distinctCateg in distinctCategs:</span>
+<span class="sd">            X[distinctCateg] = X[&#39;titulaires&#39;].apply(lambda x : 1 if distinctCateg in x else 0)</span>
+<span class="sd">        </span>
+<span class="sd">        X.drop(&quot;titulaires&quot;, axis =1, inplace=True)       </span>
+
+<span class="sd">    if &quot;forme pharma&quot; in config[&quot;featToTransform&quot;]:</span>
+<span class="sd">        distinctCategs = (X[&#39;forme pharma&#39;]</span>
+<span class="sd">                  .apply(lambda col_value : col_value.split(&#39; &#39;))</span>
+<span class="sd">                  .apply(pd.Series)</span>
+<span class="sd">                  .unstack()</span>
+<span class="sd">                  .dropna()</span>
+<span class="sd">                  .unique())</span>
+
+<span class="sd">        for distinctCateg in distinctCategs:</span>
+<span class="sd">            X[distinctCateg] = X[&#39;forme pharma&#39;].apply(lambda x : 1 if distinctCateg in x else 0)</span>
+<span class="sd">        </span>
+<span class="sd">        X.drop(&quot;forme pharma&quot;, axis =1, inplace=True)&quot;&quot;&quot;</span>
         
     <span class="k">if</span> <span class="s2">&quot;prix&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;featToTransform&quot;</span><span class="p">]:</span>
         <span class="n">X</span><span class="p">[</span><span class="s2">&quot;log_prix&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s2">&quot;prix&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
     <span class="k">del</span> <span class="n">X</span><span class="p">[</span><span class="s2">&quot;prix&quot;</span><span class="p">]</span>
     
+    
+    
     <span class="k">print</span> <span class="s2">&quot;---Feature to dummy &quot;</span>
     <span class="c1">#Feature to dummy</span>
     <span class="n">featToDummy</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;featToDummy&quot;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">featToDummy</span><span class="p">:</span>
-        <span class="n">dums</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">featToDummy</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">dums</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">featToDummy</span><span class="p">],</span><span class="n">drop_first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">dums</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">featToDummy</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    
-    
+        
     <span class="n">y_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;SOURCE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;TRAIN&#39;</span><span class="p">][</span><span class="s2">&quot;log_prix&quot;</span><span class="p">]</span>
     <span class="k">del</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;log_prix&#39;</span><span class="p">]</span>
     
+    <span class="c1">#Suppress columns non-using</span>
+    <span class="n">X_tr</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;SOURCE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;TRAIN&#39;</span><span class="p">]</span>
+    <span class="k">del</span> <span class="n">X_tr</span><span class="p">[</span><span class="s1">&#39;SOURCE&#39;</span><span class="p">]</span>
+    <span class="n">select1</span> <span class="o">=</span> <span class="n">VarianceThreshold</span><span class="p">()</span>
+    <span class="n">select1</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_tr</span><span class="p">)</span> 
+    <span class="n">n_col_tr_f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">select1</span><span class="o">.</span><span class="n">get_support</span><span class="p">()</span><span class="o">==</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">n_col_tr_f</span> <span class="o">=</span> <span class="n">X_tr</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">n_col_tr_f</span><span class="p">]</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    X_te = X[X[&#39;SOURCE&#39;] == &#39;TEST&#39;]</span>
+<span class="sd">    del X_te[&#39;SOURCE&#39;]</span>
+<span class="sd">    select2 = VarianceThreshold()</span>
+<span class="sd">    select2.fit_transform(X_te) </span>
+<span class="sd">    n_col_te_f = np.where(select2.get_support()==False)</span>
+<span class="sd">    n_col_te_f = X_te.columns.values[n_col_te_f]</span>
+<span class="sd">    </span>
+<span class="sd">    n_col_f = np.append(n_col_tr_f,n_col_te_f)</span>
+<span class="sd">    n_col_f = set(n_col_f)&quot;&quot;&quot;</span>
+    
+    <span class="k">for</span> <span class="n">features</span> <span class="ow">in</span> <span class="n">n_col_tr_f</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">X</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+    
+
     <span class="n">X_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;SOURCE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;TRAIN&#39;</span><span class="p">]</span>
     <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;SOURCE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;TEST&#39;</span><span class="p">]</span>    
     <span class="k">del</span> <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;SOURCE&#39;</span><span class="p">]</span>
@@ -15693,20 +16033,20 @@ TEST  (3671, 42)
 BIG  (11168, 43)
 _______________________________________________________________________________________________
 __________________________________________ Features __________________________________________
-DELETE    :   [&#39;id&#39;, &#39;statut&#39;, &#39;etat commerc&#39;, &#39;agrement col&#39;, &#39;titulaires&#39;, &#39;date declar annee&#39;, &#39;date amm annee&#39;]
-DUMMY     :   [&#39;tx rembours&#39;, &#39;statut admin&#39;, &#39;type proc&#39;, &#39;voies admin&#39;]
+DELETE    :   [&#39;titulaires&#39;, &#39;id&#39;, &#39;libelle&#39;, &#39;statut&#39;, &#39;etat commerc&#39;, &#39;agrement col&#39;, &#39;date declar annee&#39;, &#39;date amm annee&#39;]
+DUMMY     :   [&#39;tx rembours&#39;, &#39;voies admin&#39;, &#39;statut admin&#39;, &#39;type proc&#39;, &#39;forme pharma&#39;]
 ENCODE    :   []
-TRANSFORM :   [&#39;substances&#39;, &#39;forme pharma&#39;, &#39;libelle&#39;, &#39;prix&#39;]
+TRANSFORM :   [&#39;prix&#39;, &#39;substances&#39;]
 _______________________________________________________________________________________________
 __________________________________________ PARSE __________________________________________
---&gt;  28-10-2016 : 14:06
+--&gt;  08-11-2016 : 11:09
 BEFORE :  (11168, 43)
 ---Feature to delete 
 ---Feature to Transform 
 ---Feature to dummy 
---&gt; 28-10-2016 : 14:06 Elapsed time :25 s
-AFTER TRAIN : (7497, 3603)
-AFTER TEST : (3671, 3603)
+--&gt; 08-11-2016 : 11:09 Elapsed time :13 s
+AFTER TRAIN : (7497, 2490)
+AFTER TEST : (3671, 2490)
 </pre>
 </div>
 </div>
@@ -15729,6 +16069,16 @@ AFTER TEST : (3671, 3603)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we decide to optimize some ML models with with our data after the Parse Method.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="4.1-Gradient-Boosting-">4.1 Gradient Boosting <a name="GBR" /><a class="anchor-link" href="#4.1-Gradient-Boosting-">&#182;</a></h4>
 </div>
 </div>
@@ -15742,12 +16092,10 @@ AFTER TEST : (3671, 3603)
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
 
 <span class="n">NBROUND</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">n_estimator</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">]</span>
-<span class="n">max_depth</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">]</span>
-<span class="n">min_sample_split</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">learning_rate</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="mo">01</span><span class="p">]</span>
-
-
+<span class="n">n_estimator</span> <span class="o">=</span> <span class="p">[</span><span class="mi">250</span><span class="p">]</span>
+<span class="n">max_depth</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">500</span><span class="p">]</span>
+<span class="n">min_sample_split</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span><span class="o">.</span><span class="mo">01</span><span class="p">]</span>
 
 
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">n_estimator</span><span class="p">:</span>
@@ -15756,7 +16104,7 @@ AFTER TEST : (3671, 3603)
             <span class="k">for</span> <span class="n">learn_rate</span> <span class="ow">in</span> <span class="n">learning_rate</span><span class="p">:</span>
                 <span class="n">err</span> <span class="o">=</span> <span class="mi">0</span>
                 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="n">max_d</span><span class="p">,</span> <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="n">min_sam</span><span class="p">,</span>
-                          <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="n">learn_rate</span><span class="p">,</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="mi">1024</span><span class="p">}</span>
+                          <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="n">learn_rate</span><span class="p">,</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="mi">1024</span><span class="p">,</span> <span class="s1">&#39;subsample&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span><span class="s1">&#39;loss&#39;</span><span class="p">:</span><span class="s1">&#39;huber&#39;</span><span class="p">}</span>
 
                 <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">KFold</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_folds</span><span class="o">=</span><span class="n">NBROUND</span><span class="p">):</span>
                     <span class="n">X_train_cv</span><span class="p">,</span> <span class="n">X_test_cv</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span> <span class="p">:],</span> <span class="n">X_train</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span> <span class="p">:]</span>
@@ -15776,12 +16124,12 @@ AFTER TEST : (3671, 3603)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[328]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
 
-<span class="n">n_estimator</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">n_estimator</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">max_depth</span> <span class="o">=</span> <span class="bp">None</span>
 <span class="n">min_sample_split</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
@@ -15814,7 +16162,7 @@ AFTER TEST : (3671, 3603)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[110]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
@@ -15823,11 +16171,13 @@ AFTER TEST : (3671, 3603)
 <span class="n">err</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">K_Fold</span> <span class="o">=</span> <span class="mi">5</span>
 
+
+<span class="c1">#X_trainb = pd.get_dummies(X_trainb)</span>
 <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">KFold</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_folds</span><span class="o">=</span><span class="n">K_Fold</span><span class="p">):</span>
     <span class="n">X_train_cv</span><span class="p">,</span> <span class="n">X_test_cv</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span> <span class="p">:],</span> <span class="n">X_train</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span> <span class="p">:]</span>
     <span class="n">y_train_cv</span><span class="p">,</span> <span class="n">y_test_cv</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>  
-    <span class="n">reg</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_cv</span><span class="p">,</span> <span class="n">y_train_cv</span><span class="p">)</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_cv</span><span class="p">,</span> <span class="n">y_train_cv</span><span class="p">)</span>
     <span class="n">pred_cv</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_cv</span><span class="p">)</span>
     <span class="n">err</span> <span class="o">+=</span> <span class="n">mape_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">y_test_cv</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pred_cv</span><span class="p">))</span>
     <span class="k">print</span> <span class="n">mape_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">y_test_cv</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pred_cv</span><span class="p">))</span>
@@ -15838,34 +16188,15 @@ AFTER TEST : (3671, 3603)
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>33.0420948184
-38.2390243651
-37.0043498864
-37.663935364
-33.4100334381
-*** MAPE Error :  35.87
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[146]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
 
-<span class="n">n_estimator</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">n_estimator</span> <span class="o">=</span> <span class="mi">2000</span>
 <span class="n">min_sample_split</span> <span class="o">=</span> <span class="mi">1</span>
 
 
@@ -15876,7 +16207,7 @@ AFTER TEST : (3671, 3603)
 
 <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
 
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;prix&#39;</span><span class="p">:</span><span class="n">pred</span><span class="p">})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_RF_1_2.csv&#39;</span><span class="p">,</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;prix&#39;</span><span class="p">:</span><span class="n">pred</span><span class="p">})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_RF_1_8b_nn.csv&#39;</span><span class="p">,</span>
                           <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 
@@ -15908,7 +16239,7 @@ AFTER TEST : (3671, 3603)
 <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">KFold</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_folds</span><span class="o">=</span><span class="n">K_Fold</span><span class="p">):</span>
     <span class="n">X_train_cv</span><span class="p">,</span> <span class="n">X_test_cv</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span> <span class="p">:],</span> <span class="n">X_train</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span> <span class="p">:]</span>
     <span class="n">y_train_cv</span><span class="p">,</span> <span class="n">y_test_cv</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>  
-    <span class="n">reg</span> <span class="o">=</span> <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;mae&#39;</span><span class="p">)</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span><span class="n">warm_start</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_cv</span><span class="p">,</span> <span class="n">y_train_cv</span><span class="p">)</span>
     <span class="n">pred_cv</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_cv</span><span class="p">)</span>
     <span class="n">err</span> <span class="o">+=</span> <span class="n">mape_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">y_test_cv</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pred_cv</span><span class="p">))</span>
@@ -15921,12 +16252,48 @@ AFTER TEST : (3671, 3603)
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[147]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">ExtraTreesRegressor</span>
+
+<span class="n">reg</span> <span class="o">=</span> <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span><span class="n">warm_start</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;prix&#39;</span><span class="p">:</span><span class="n">pred</span><span class="p">})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_ET_3.csv&#39;</span><span class="p">,</span>
+                          <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[Parallel(n_jobs=1)]: Done 2000 out of 2000 | elapsed: 35.1min finished
+[Parallel(n_jobs=1)]: Done 2000 out of 2000 | elapsed:    4.4s finished
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="4.4.-Adaboost-Regressor-">4.4. Adaboost Regressor <a name="Adaboost" /><a class="anchor-link" href="#4.4.-Adaboost-Regressor-">&#182;</a></h4>
+<h4 id="4.4.-Adaboost-Regressor-">4.4. Adaboost Regressor <a name="Ada" /><a class="anchor-link" href="#4.4.-Adaboost-Regressor-">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -15956,26 +16323,41 @@ AFTER TEST : (3671, 3603)
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>135.490443918
+133.38920822
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="4.5.-Ridge-Regression-">4.5. Ridge Regression <a name="Ridges" /><a class="anchor-link" href="#4.5.-Ridge-Regression-">&#182;</a></h4>
+<h4 id="4.4.-Ridge-Regression-">4.4. Ridge Regression <a name="Ridges" /><a class="anchor-link" href="#4.4.-Ridge-Regression-">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
 <span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">KFold</span>
 
 <span class="n">NBROUND</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">alpha</span><span class="p">:</span>
     <span class="n">err</span> <span class="o">=</span> <span class="mi">0</span>
@@ -15991,25 +16373,6 @@ AFTER TEST : (3671, 3603)
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>36.324406203
-42.5078274094
-37.804401771
-40.4773190441
-36.696129325
-(38.76, 0.4)
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -16043,7 +16406,7 @@ AFTER TEST : (3671, 3603)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="4.6.-Elastic-Net-">4.6. Elastic Net <a name="EN" /><a class="anchor-link" href="#4.6.-Elastic-Net-">&#182;</a></h4>
+<h4 id="4.5.-Elastic-Net">4.5. Elastic Net<a name="ENet" /><a class="anchor-link" href="#4.5.-Elastic-Net">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -16080,7 +16443,7 @@ AFTER TEST : (3671, 3603)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="4.7.-Lasso">4.7. Lasso<a name="Lasso" /><a class="anchor-link" href="#4.7.-Lasso">&#182;</a></h4>
+<h4 id="4.7.-Lasso-Regression-">4.7. Lasso Regression <a name="Lasso" /><a class="anchor-link" href="#4.7.-Lasso-Regression-">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -16118,13 +16481,13 @@ AFTER TEST : (3671, 3603)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="4.8-Support-Vectors-Machine-">4.8 Support Vectors Machine <a name="SVM" /><a class="anchor-link" href="#4.8-Support-Vectors-Machine-">&#182;</a></h4>
+<h4 id="4.6-Support-Vectors-Machine-">4.6 Support Vectors Machine <a name="SVM" /><a class="anchor-link" href="#4.6-Support-Vectors-Machine-">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
@@ -16148,25 +16511,6 @@ AFTER TEST : (3671, 3603)
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>77.5734745633
-79.8532130694
-85.9933638179
-80.2607601081
-75.0406899219
-(79.74, [0.4])
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -16182,28 +16526,28 @@ AFTER TEST : (3671, 3603)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="5.1.-Stacking-by-mean-aggreagtion--">5.1. Stacking by mean aggreagtion  <a name="Stack_Mean" /><a class="anchor-link" href="#5.1.-Stacking-by-mean-aggreagtion--">&#182;</a></h4>
+<h4 id="5.1.-Stacking-by-mean-aggreagtion--">5.1. Stacking by mean aggreagtion  <a name="Stacking_1" /><a class="anchor-link" href="#5.1.-Stacking-by-mean-aggreagtion--">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[151]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">Model_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_GBR_2_-32_15657.csv&#39;</span><span class="p">,</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">Model_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_ET_3.csv&#39;</span><span class="p">,</span>
                       <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
-<span class="n">Model_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_RF_1_2-30_99709.csv&#39;</span><span class="p">,</span>
+<span class="n">Model_4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_RF_1_8b_nn.csv&#39;</span><span class="p">,</span>
                       <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
-<span class="c1">#Model_3 = pd.read_csv(&#39;Results/soumission_Ridge_2_1-38_06105.csv&#39;,</span>
-<span class="c1">#                      encoding=&#39;utf8&#39;,sep=&#39;;&#39;)</span>
+<span class="n">Model_3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_Stack_10-29_47373.csv&#39;</span><span class="p">,</span>
+                      <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="p">[</span><span class="n">Model_1</span><span class="p">[</span><span class="s1">&#39;prix&#39;</span><span class="p">],</span><span class="n">Model_2</span><span class="p">[</span><span class="s1">&#39;prix&#39;</span><span class="p">]]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">[</span><span class="n">Model_1</span><span class="p">[</span><span class="s1">&#39;prix&#39;</span><span class="p">],</span><span class="n">Model_4</span><span class="p">[</span><span class="s1">&#39;prix&#39;</span><span class="p">],</span><span class="n">Model_3</span><span class="p">[</span><span class="s1">&#39;prix&#39;</span><span class="p">]]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 
 <span class="n">pred_stack</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pred_stack</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;prix&#39;</span><span class="p">:</span><span class="n">pred_stack</span><span class="p">})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_Stack_2.csv&#39;</span><span class="p">,</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pred_stack</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;prix&#39;</span><span class="p">:</span><span class="n">pred_stack</span><span class="p">})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_Stack_14.csv&#39;</span><span class="p">,</span>
                           <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 
@@ -16217,22 +16561,22 @@ AFTER TEST : (3671, 3603)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="5.2.-Basic-Stacking-with-Linear-Regression-">5.2. Basic Stacking with Linear Regression <a name="Stacking_LR" /><a class="anchor-link" href="#5.2.-Basic-Stacking-with-Linear-Regression-">&#182;</a></h4>
+<h4 id="5.2.-Basic-Stacking-with-Linear-Regression-">5.2. Basic Stacking with Linear Regression <a name="Stacking_2" /><a class="anchor-link" href="#5.2.-Basic-Stacking-with-Linear-Regression-">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[453]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">KFold</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">ExtraTreesRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 
 <span class="n">K_Fold</span> <span class="o">=</span> <span class="mi">5</span>
-
+<span class="n">n</span> <span class="o">=</span> <span class="mi">250</span>
 
 <span class="k">print</span> <span class="s1">&#39;RF Model....&#39;</span>
 <span class="n">pred_cv_1</span> <span class="o">=</span> <span class="p">[]</span>
@@ -16240,16 +16584,16 @@ AFTER TEST : (3671, 3603)
 <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">KFold</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_folds</span><span class="o">=</span><span class="n">K_Fold</span><span class="p">):</span>
     <span class="n">X_train_cv</span><span class="p">,</span> <span class="n">X_test_cv</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span> <span class="p">:],</span> <span class="n">X_train</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span> <span class="p">:]</span>
     <span class="n">y_train_cv</span><span class="p">,</span> <span class="n">y_test_cv</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>  
-    <span class="n">reg</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
     <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_cv</span><span class="p">,</span> <span class="n">y_train_cv</span><span class="p">)</span>
     <span class="n">pred_cv_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred_cv_1</span><span class="p">,</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_cv</span><span class="p">))</span>
     <span class="k">print</span> <span class="s1">&#39;.....&#39;</span>
 
-<span class="n">reg</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">pred_1</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
     
-<span class="k">print</span> <span class="s1">&#39;Ridge Model....&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;ET Model....&#39;</span>
 <span class="n">pred_cv_2</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="mi">4</span><span class="p">]</span>
@@ -16257,22 +16601,98 @@ AFTER TEST : (3671, 3603)
 <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">KFold</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_folds</span><span class="o">=</span><span class="n">K_Fold</span><span class="p">):</span>
     <span class="n">X_train_cv</span><span class="p">,</span> <span class="n">X_test_cv</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">train_index</span><span class="p">,</span> <span class="p">:],</span> <span class="n">X_train</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">test_index</span><span class="p">,</span> <span class="p">:]</span>
     <span class="n">y_train_cv</span><span class="p">,</span> <span class="n">y_test_cv</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>  
-    <span class="n">reg</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span><span class="n">warm_start</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_cv</span><span class="p">,</span> <span class="n">y_train_cv</span><span class="p">)</span>
     <span class="n">pred_cv_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred_cv_2</span><span class="p">,</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_cv</span><span class="p">))</span>
     <span class="k">print</span> <span class="s1">&#39;.....&#39;</span>
 
-<span class="n">reg</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">)</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span><span class="n">warm_start</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">reg</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">pred_2</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> 
 
-<span class="n">regr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">regr</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">pred_cv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">pred_cv_1</span><span class="p">,</span><span class="n">pred_cv_2</span><span class="p">])</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <span class="n">pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">pred_1</span><span class="p">,</span><span class="n">pred_2</span><span class="p">])</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <span class="n">regr</span> <span class="o">=</span> <span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">pred_cv</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">pred_f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span>
 
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;prix&#39;</span><span class="p">:</span><span class="n">pred_f</span><span class="p">})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_Stacking_Linear_1.csv&#39;</span><span class="p">,</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;prix&#39;</span><span class="p">:</span><span class="n">pred_f</span><span class="p">})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_Stacking_Linear_5.csv&#39;</span><span class="p">,</span>
+                          <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>   
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>RF Model....
+.....
+.....
+.....
+.....
+.....
+Ridge Model....
+.....
+.....
+.....
+.....
+.....
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="5.3.-Stacking-with-stacked_generalizer-">5.3. Stacking with stacked_generalizer <a name="Stacking_Gen" /><a class="anchor-link" href="#5.3.-Stacking-with-stacked_generalizer-">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">stacked_generalization.lib.stacking</span> <span class="kn">import</span> <span class="n">StackedRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span><span class="p">,</span> <span class="n">ExtraTreesRegressor</span><span class="p">,</span><span class="n">GradientBoostingRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">VERBOSE</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">N_FOLDS</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y_train</span>
+<span class="n">X_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asmatrix</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+
+<span class="c1"># define base models</span>
+<span class="n">base_models</span> <span class="o">=</span> <span class="p">[</span><span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">),</span>
+               <span class="n">ExtraTreesRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">)]</span>
+
+<span class="c1"># define blending model</span>
+<span class="n">blending_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># initialize multi-stage model</span>
+<span class="n">sg</span> <span class="o">=</span> <span class="n">StackedRegressor</span><span class="p">(</span><span class="n">blending_model</span><span class="p">,</span><span class="n">base_models</span><span class="p">,</span><span class="n">n_folds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">oob_score_flag</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c1"># fit model</span>
+<span class="n">sg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">pred_f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_t</span><span class="p">))</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pred_f</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;prix&#39;</span><span class="p">:</span><span class="n">pred_f</span><span class="p">})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Results/soumission_Stacking_Linear_3.csv&#39;</span><span class="p">,</span>
                           <span class="n">sep</span> <span class="o">=</span> <span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>   
 </pre></div>
 
